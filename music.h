@@ -27,8 +27,8 @@
 
 #include <iostream>
 #include <pthread.h>
-#include "SDL/SDL.h"
-#include "SDL/SDL_mixer.h"
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_mixer.h"
 using std::string;
 
 struct player_vars {

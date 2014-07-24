@@ -2,7 +2,7 @@ OBJS = Ascii.o combat.o enemies.o main.o Level.o mainmenu.o mygetch.o player.o P
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
-LFLAGS = -lpthread -lSDL2 -lSDL_mixer $(DEBUG)
+LFLAGS = -lpthread -lSDL2 -lSDL2_mixer $(DEBUG)
 
 mc : $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o mc
