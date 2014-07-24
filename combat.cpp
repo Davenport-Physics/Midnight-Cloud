@@ -22,6 +22,8 @@
 
 #include "combat.h"
 
+using namespace std;
+
 void fight(char x,string &load,bool &done,struct variables *data)
 {
      
@@ -66,7 +68,7 @@ void fight(char x,string &load,bool &done,struct variables *data)
 		 //draws user options
 		for (int a = 0;a < height;a++) {
 			
-			for (int b=0;b<width;b++) {
+			for (int b = 0;b < width;b++) {
 				
 				cout << " " << array[a][b];
 				
@@ -75,19 +77,19 @@ void fight(char x,string &load,bool &done,struct variables *data)
 			
 		 }
 		 
-		check=mygetch();
-		switch (check) {
-			case 'w':
+		check = mygetch();
+		switch (check_controls(check)) {
+			case UP:
 			
 				yo -= 3;
 				
 			break;
-			case 's':
+			case DOWN:
 			
 				yo += 3;
 				
 			break;
-			case '\n':
+			case ENTER:
 				//checks where the user pressed enter.
 				if (array[yo][xo] == array[2][0]) {
 					

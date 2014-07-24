@@ -20,7 +20,6 @@
 
 
 #include "mainmenu.h"
-
 	
 void show(bool *cont) {
 	
@@ -34,15 +33,7 @@ void show(bool *cont) {
 	int oy = y;
 	string load = "";
 	
-	struct player_controls *pc = new struct player_controls[1];
-	pc->up = 'w';
-	pc->down = 's';
-	pc->left = 'a';
-	pc->right = 'd';
-	pc->quit = 'q';
-	pc->heal = 'h';
-	pc->journal = 'j';
-	pc->debug = 'c';
+	init_controls();
 	
 	pthread_t title;
 	struct player_vars data;
@@ -80,17 +71,17 @@ void show(bool *cont) {
 		
 		}
 		command = mygetch();
-		if ( command == pc->up ) {
+		if ( check_controls(command) == UP ) {
 			
 			y -=2;
 			x -=2;
 			
-		} else if ( command == pc->down ) {
+		} else if ( check_controls(command) == DOWN ) {
 			
 			y+=2;
 			x+=2;
 			
-		} else if ( command == pc->quit ) {
+		} else if ( check_controls(command) == QUIT ) {
 			
 			cout << "Goodbye!" << endl;
 			*cont = true;
@@ -123,7 +114,7 @@ void show(bool *cont) {
 				
 			} else {
 				
-				options(pc);
+				options();
 				
 			}
 			
@@ -142,9 +133,9 @@ void show(bool *cont) {
 		}
 		system("clear");	
 	}
-	delete pc;
+	
 }
-void options(struct player_controls *pc) {
+void options() {
 	
 	system("clear");
 
@@ -160,19 +151,29 @@ void options(struct player_controls *pc) {
 	char command;
 	
 	while ( !done ) {
+		
 		array[y][x] = '>';
+		
 		for ( int row = 0;row < 5;row++ ) {
+			
 			for ( int column = 0;column < 10;column++ ) {
+				
 					std::cout << array[row][column];
+					
 			}
+			
 			std::cout << std::endl;
+			
 		}
 		
 		command = mygetch();
 		
 		if (command == '\n') {
+			
 			if ( y == 0 ) {
-				change_controls( pc );
+				
+				set_controls();
+				
 			} else if ( y == 2 ) {
 				
 				system("clear");
@@ -192,97 +193,32 @@ void options(struct player_controls *pc) {
 				
 			}
 		}
-		else if ( command == pc->up ) {
+		else if ( check_controls( command ) == UP ) {
 			
-			y-=2;
+			y -= 2;
 			
-		} else if ( command == pc->down ) {
-			y+=2;
-		} else if ( command == pc->quit ) {
+		} else if ( check_controls( command ) == DOWN ) {
+			
+			y += 2;
+			
+		} else if ( check_controls( command ) == QUIT ) {
+			
 			done = true;
+			
 		}
 		if (y < 0 || y > 2 ) {
-			y=yo;
+			
+			y = yo;
+			
 		} else {
+			
 			array[yo][x] = ' ';
-			yo=y;
+			yo = y;
+			
 		}
+		
 		system("clear");
-	}
-}
-void change_controls( struct player_controls *pc )  {
-	
-	bool check = true;
-	bool done = false;
-	
-	while (!done) {
-	
-		std::cout << "Press key for up" << endl;
-		pc->up = mygetch();
-	
-		std::cout << "Press key for down" << endl;
-		pc->down = mygetch();
-		if ( pc->down == pc->up ) {
-			check = false;
-		}
-	
-		std::cout << "Press key for left" << endl;
-		pc->left = mygetch();
-		if (( pc->left == pc->down ) || ( pc->left == pc->up )) {
-			check = false;
-		}
-	
-		std::cout << "Press key for right" << endl;
-		pc->right = mygetch();
-		if (( pc->right == pc->left ) || ( pc->right == pc->down ) 
-									||	( pc->right == pc->up )) {
-				check = false;
-		}
-	
-		std::cout << "Press key for heal" << endl;
-		pc->heal = mygetch();
-		if ((pc->heal == pc->right) || (pc->heal == pc->left) 
-			|| (pc->heal == pc->down) || (pc->heal == pc->up)) {
-			check = false;	
-		}
-	
-		std::cout << "Press key for journal" << endl;
-		pc->journal = mygetch();
-		if ((pc->journal == pc->heal) || (pc->journal == pc->right) 
-			|| (pc->journal == pc->left) || (pc->journal == pc->down) 
-										|| (pc->journal == pc->down)) {
-			check = false;	
-		}
-	
-		std::cout << "Press key for quit" << endl;
-		pc->quit = mygetch();
-		if ((pc->quit == pc->journal) || (pc->quit == pc->heal) 
-			|| (pc->quit == pc->right) || (pc->quit == pc->left) 
-			|| (pc->quit == pc->down) || (pc->quit == pc->up)) {
-			check = false;	
-		}
-	
-		std::cout << "Press key for debug" << endl;
-		pc->debug = mygetch();
-		if ((pc->debug == pc->quit) || (pc->debug == pc->journal) 
-			|| (pc->debug == pc->heal) || (pc->debug == pc->right) 
-			|| (pc->debug == pc->left) || (pc->debug == pc->down)
-									|| (pc->debug == pc->up)) {
-			check = false;								
-		}
-		if (check == true) {
-			
-			done = true;
-			std::cout << "No duplicate key found, have fun." << std::endl;
-			std::cin.get();
-			
-		} else {
-			
-			std::cout << "One of your key are used twice. Try again" << std::endl;
-			pause(1000000000);
-			system("clear");
-			
-		}
+		
 	}
 	
 }

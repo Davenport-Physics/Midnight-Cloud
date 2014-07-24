@@ -47,18 +47,6 @@ struct variables {
 	float mana_regen;
 		
 };
-struct player_controls {
-	
-	char up;
-	char down;
-	char left;
-	char right;
-	char heal;
-	char journal;
-	char quit;
-	char debug;
-	
-};
 
 void xp_int( struct variables *data );
 void controls();

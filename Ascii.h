@@ -23,27 +23,31 @@
 
 #ifndef ASCII_H
 #define ASCII_H
+
+#include <iostream>
+#include <cstdlib>
+#include <pthread.h>
+
 #include "combat.h"
 #include "mygetch.h"
 #include "Level.h"
-#include "player.h"
 #include "Journal.h"
 #include "Merchant.h"
 #include "Gold.h"
 #include "enemies.h"
 #include "music.h"
-#include <iostream>
-#include <cstdlib>
-#include <pthread.h>
-using namespace std;
+#include "controls.h"
 
 struct info {
+	
 	char map[20][40];
 	bool done;
 	bool halt;
 };
+
 void lvl(string map,string &load,bool &done,struct variables *data);
 void check(char x,string &load,int &game,bool &done,struct variables *data);
+
 #endif
 
 

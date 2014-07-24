@@ -22,10 +22,12 @@
 
 #ifndef MERCHANT_H
 #define MERCHANT_H
-#include "mygetch.h"
-#include "player.h"
+
 #include <iostream>
 #include <cstdlib>
+
+#include "mygetch.h"
+#include "player.h"
 
 using std::string;
 using std::cout;
@@ -35,7 +37,9 @@ void display(struct variables *data,int &current_gold);
 void buy(struct variables *data,int &current_gold);
 void sell();
 void item(int x,struct variables *data,int &current_gold);
+
 string itemDescription(int ID);
+
 void itemName(string name[],int ID[]);
 int itemCost(int ID);
 void check(int x,struct variables *data, int &current_gold);

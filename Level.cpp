@@ -20,7 +20,7 @@
 //      
 #include "Level.h"
 
-string draw(int x,struct variables *data){
+string draw( int x , struct variables *data ){
 	
 	string list[30];
 	list[0] = "Maps/Map0";
@@ -30,7 +30,8 @@ string draw(int x,struct variables *data){
 	return list[x];
 	
 }
-void stop(bool &done) {
+void stop( bool &done ) {
+	
 	char check;
 	
 	cout << "Do you want to stop? y/n" << endl;

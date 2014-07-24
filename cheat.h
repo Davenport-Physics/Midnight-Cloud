@@ -21,8 +21,10 @@
 
 #ifndef CHEAT_H
 #define CHEAT_H
+
 #include <iostream>
 #include <cstring>
+
 #include "player.h"
 using std::cout;
 using std::string;
@@ -30,5 +32,6 @@ using std::endl;
 using std::cin;
 
 void cheat(struct variables *data,int *current_data);
+
 #endif
 

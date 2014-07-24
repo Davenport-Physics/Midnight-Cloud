@@ -1,4 +1,4 @@
-OBJS = Ascii.o combat.o enemies.o main.o Level.o mainmenu.o mygetch.o player.o Portrait.o Journal.o Merchant.o Gold.o cheat.o music.o systemtime.o
+OBJS = Ascii.o combat.o enemies.o main.o Level.o mainmenu.o mygetch.o player.o Portrait.o Journal.o Merchant.o Gold.o cheat.o music.o systemtime.o controls.o
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
@@ -7,7 +7,7 @@ LFLAGS = -lpthread -lSDL2 -lSDL2_mixer $(DEBUG)
 mc : $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o mc
 
-Ascii.o : Ascii.h Ascii.cpp combat.h mygetch.h Level.h player.h Journal.h Merchant.h Gold.h cheat.h music.h
+Ascii.o : Ascii.h Ascii.cpp combat.h mygetch.h Level.h Journal.h Merchant.h Gold.h cheat.h music.h controls.h
 	$(CC) $(CFLAGS) Ascii.cpp
 
 combat.o : combat.h combat.cpp mygetch.h enemies.h player.h Portrait.h
@@ -19,10 +19,10 @@ enemies.o : enemies.h enemies.cpp Ascii.h systemtime.h
 main.o : main.cpp
 	$(CC) $(CFLAGS) main.cpp
 
-Level.o : Level.h Level.cpp Ascii.h player.h
+Level.o : Level.h Level.cpp player.h
 	$(CC) $(CFLAGS) Level.cpp
 
-mainmenu.o : mainmenu.h mainmenu.cpp player.h mygetch.h music.h
+mainmenu.o : mainmenu.h mainmenu.cpp player.h mygetch.h music.h controls.h
 	$(CC) $(CFLAGS) mainmenu.cpp
 
 mygetch.o : mygetch.h mygetch.cpp
@@ -51,6 +51,9 @@ music.o : music.h music.cpp
 	
 systemtime.o : systemtime.h systemtime.cpp
 	$(CC) $(CFLAGS) systemtime.cpp
+
+controls.o : controls.h controls.cpp mygetch.h
+	$(CC) $(CFLAGS) controls.cpp
 
 clean:
 	\rm *.o mc

@@ -22,6 +22,7 @@
 
 #ifndef MAINMENU_H
 #define MAINMENU_H
+
 #include <iostream>
 #include <cstdlib>
 #include <pthread.h>
@@ -30,9 +31,10 @@
 #include "player.h"
 #include "mygetch.h"
 #include "music.h"
+#include "controls.h"
 
-void change_controls(struct player_controls *pc);
-void options(struct player_controls *pc);
+void options();
 void show(bool *cont);
+
 #endif
 

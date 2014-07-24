@@ -20,6 +20,8 @@
 //      
 #include "Ascii.h"
 
+using namespace std;
+
 void lvl(string map,string &load,bool &done,struct variables *data) {
 	
 	const int width = 40;
@@ -103,33 +105,33 @@ void lvl(string map,string &load,bool &done,struct variables *data) {
 		command = mygetch();
 		Thread.halt = true;
 		
-		switch ( command ) {
-			case 'w':
+		switch ( check_controls(command) ) {
+			case UP:
 			
 				data->y--;
 				
 			break;
-			case 'a':
+			case LEFT:
 			
 				data->x--;
 				
 			break;
-			case 's':
+			case DOWN:
 			
 				data->y++;
 				
 			break;
-			case 'd':
+			case RIGHT:
 			
 				data->x++;
 				
 			break;
-			case 'j':
+			case JOURNAL:
 			
 				display();
 				
 			break;
-			case 'q':
+			case QUIT:
 			
 				stop( done );
 				if ( done ) {
@@ -139,7 +141,7 @@ void lvl(string map,string &load,bool &done,struct variables *data) {
 				}
 				
 			break;
-			case 'c':
+			case DEBUG:
 			
 				cheat( data , &current_gold );
 				
@@ -149,7 +151,7 @@ void lvl(string map,string &load,bool &done,struct variables *data) {
 				data->mana -= .10;
 				
 			break;
-			case 'h':
+			case HEAL:
 				//Adds Healing option to grid.
 				if (data->player_health < data->max_health && data->mana >= 1.5) {
 					
@@ -252,12 +254,14 @@ void lvl(string map,string &load,bool &done,struct variables *data) {
 		}
 		system("clear");
 	}
+	
 	Thread.halt = true;
 	Thread.done = true;
 	music.done = true;
 	pthread_join( thread , NULL );
 	pthread_join( musicthread , NULL );
 	system("clear");
+	
 }
 
 
@@ -268,9 +272,9 @@ void check(char x,string &load, int &game,bool &done,struct variables *data)
 	bool is = false;
 	
 	//Checks to see if you stepped into a enemy.
-	for (int a=0;a<3;a++) {
+	for ( int a = 0;a < 3;a++ ) {
 		
-		if (x == enemies[a]) {
+		if ( x == enemies[a] ) {
 			
 			is = true;
 			
@@ -278,13 +282,13 @@ void check(char x,string &load, int &game,bool &done,struct variables *data)
 			
 	}
 	
-	if (is) {
+	if ( is ) {
 		
 		system("clear");
-		fight(x,load,done,data);
+		fight( x , load , done , data );
 		
 	}	     
-    if (done) {
+    if ( done ) {
 		
 		game++;
 		

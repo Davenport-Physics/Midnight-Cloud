@@ -22,8 +22,9 @@
 #ifndef	LEVEL_H
 #define	LEVEL_H
 #include <iostream>
-#include "Ascii.h"
+
 #include "player.h"
+
 using std::string;
 
 string draw(int x,struct variables *data);

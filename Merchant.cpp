@@ -344,6 +344,7 @@ void stats(int ID,struct variables *data) {
 	stats[1] = 4;
 	stats[4] = 3;
 	stats[5] = 8;
+	
 	float *general = new float[8];
 	general[2] = .5;
 	general[3] = 1;

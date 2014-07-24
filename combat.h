@@ -21,16 +21,19 @@
 
 #ifndef	COMBAT_H
 #define COMBAT_H
+
+#include <iostream>
+#include <cstdlib>
+#include <string>
+
 #include "mygetch.h"
 #include "enemies.h"
 #include "player.h"
 #include "Portrait.h"
-#include <iostream>
-#include <cstdlib>
-#include <string>
-using namespace std;
+#include "controls.h"
 
-void fight(char x,string &load,bool &done,struct variables *data);
+void fight(char x,std::string &load,bool &done,struct variables *data);
 bool level_check(struct variables *data);
+
 #endif
 
