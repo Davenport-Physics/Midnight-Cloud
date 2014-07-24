@@ -1,0 +1,16 @@
+char:d;
+portrait:
+[
+"     __                 "
+"    (..)                "
+"     /_\\               "
+"                        "
+]
+attack:
+[
+min:1;
+max:5;
+accuracy:85;
+]
+health:7;
+exp:5;

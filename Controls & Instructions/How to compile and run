@@ -1,0 +1,15 @@
+cd into directory.
+
+Compile*
+g++ -Wall -o mc *.cpp -pthread -lSDL2 -lSDL2_mixer
+
+run*
+./mc
+
+OR!!!!
+
+..to compile
+make
+
+..to clean all objects and files.
+make clean
